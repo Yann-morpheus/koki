@@ -7,8 +7,6 @@
  *
  * @author admin.237
  */
-
-
 import java.io.File;
 import static java.lang.Float.parseFloat;
 import javax.swing.JFileChooser;
@@ -24,7 +22,7 @@ import jxl.Sheet;
 public class Etudiant extends javax.swing.JFrame {
 
     public void saveStudent() {
-        
+
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Sélectionnez votre fichier Excel à traiter");
         chooser.setFileFilter(new FileNameExtensionFilter("Fichiers Excel", "xls"));
@@ -41,11 +39,11 @@ public class Etudiant extends javax.swing.JFrame {
 
                 // Parcourir les lignes du fichier Excel
                 for (int row = 1; row < sheet.getRows(); row++) {
-                    Cell cellA = sheet.getCell(0, row); // Colonne A
-                    Cell cellB = sheet.getCell(1, row); // Colonne B
-                    Cell cellC = sheet.getCell(2, row); // Colonne C
-                    Cell cellD = sheet.getCell(3, row); // Colonne D
-                    Cell cellF = sheet.getCell(4, row); // Colonne D
+                    Cell cellA = sheet.getCell(0, row);
+                    Cell cellB = sheet.getCell(1, row);
+                    Cell cellC = sheet.getCell(2, row);
+                    Cell cellD = sheet.getCell(3, row);
+                    Cell cellF = sheet.getCell(4, row);
 
                     String nomEtd = cellA.getContents();
                     String prenomEtd = cellB.getContents();
@@ -53,15 +51,15 @@ public class Etudiant extends javax.swing.JFrame {
                     String dateNaiss = cellD.getContents();
                     int niveau = Integer.parseInt(cellF.getContents());
 
-                    // Créer la requête SQL avec concaténation des valeurs
+                    
                     String AddStudentQuery = "INSERT INTO etudiant ( matricule,nomEtd, prenomEtd, filieRe, dateNaissance, niveau) VALUES (NULL,'" + nomEtd + "','" + prenomEtd + "', '" + filiere + "', '" + dateNaiss + "', " + niveau + ")";
 
-                    // Exécuter la requête d'insertion
+                    
                     Statement stmt = con.createStatement();
                     int rslt = stmt.executeUpdate(AddStudentQuery);
                     if (rslt == 1) {
                         JOptionPane.showMessageDialog(null, "enregistrement reussi");
-                    }
+                    }//
                 }
 
                 con.close();
